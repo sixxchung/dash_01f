@@ -33,6 +33,7 @@ def create_dash_app(requests_pathname_prefix: str = None) -> Dash:
 # =============================================================================
 # Run app
 # =============================================================================
-app = create_dash_app()
+
 if __name__ == '__main__':
+    app = create_dash_app()
     app.run_server(debug=False)

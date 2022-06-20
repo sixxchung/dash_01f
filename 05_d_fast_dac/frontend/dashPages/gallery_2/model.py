@@ -7,9 +7,11 @@ import pandas as pd
 
 def query_data():
     # This could be an expensive data querying step
-    gdp_data = pd.read_csv(
-        'https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv')
-    return gdp_data.to_json(date_format='iso', orient='split')
+    url = 'https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv'
+    print(f"URLURLURL===> {url}")
+    gdp_data = pd.read_csv(url)
+    gdp_data =  gdp_data.to_json(date_format='iso', orient='split')
+    return gdp_data 
 
 
 def dataframe():

@@ -9,6 +9,7 @@ def get_callbacks(app_dash):
         Output('graph-with-slider', 'figure'),
         Input('year-slider', 'value'))
     def update_figure(selected_year):
+        print(f"sixx gallery2 => {selected_year}")
         gdp_data = dataframe()
         filtered_df = gdp_data[gdp_data.year == selected_year]
 

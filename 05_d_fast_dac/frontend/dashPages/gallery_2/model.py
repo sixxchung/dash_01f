@@ -5,7 +5,7 @@ import pandas as pd
 # @cache.memoize(timeout=TIMEOUT)
 
 
-def query_data():
+def query_data_gapminder():
     # This could be an expensive data querying step
     url = 'https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv'
     print(f"URLURLURL===> {url}")
@@ -15,4 +15,4 @@ def query_data():
 
 
 def dataframe():
-    return pd.read_json(query_data(), orient='split')
+    return pd.read_json(query_data_gapminder(), orient='split')

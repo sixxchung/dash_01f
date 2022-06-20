@@ -2,9 +2,7 @@ import dash
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
-MENU_ITEMS = ("basic_cards", "social_cards", "tab_cards",
-              "basic_boxes", "value_boxes", 
-              "gallery_1", "gallery_2")
+from frontend.common.consts import MENU_ITEMS
 
 def activate(input_id):
     menu_n = len(MENU_ITEMS)

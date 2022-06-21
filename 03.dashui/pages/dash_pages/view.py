@@ -6,7 +6,8 @@ from components.table import make_dash_table
 import pandas as pd
 from datetime import date,timedelta, datetime
 from dash import dash_table
-from dash_table.Format import Format, Group, Scheme
+from dash.dash_table.Format import Format, Group, Scheme
+from dash.dash_table.Format import Group
 
 from utils.server_function import *
 from pages.dash_pages.model import *

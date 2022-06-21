@@ -1,10 +1,13 @@
 import importlib
 from dash import html, dcc
 import dash_admin_components as dac
+
 from frontend.common.consts import MENU_ITEMS
 
 def load_module(module_nm):
-    rlt = importlib.import_module(f"frontend.dashPages.{module_nm}.view")
+    temp = f"frontend.dashPages.{module_nm}.view"
+    print(temp)
+    rlt = importlib.import_module(temp)
     return rlt
 # basic_cards = load_module('basic_cards')
 for m in MENU_ITEMS:

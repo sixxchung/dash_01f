@@ -5,7 +5,7 @@ from fastapi.responses import RedirectResponse
 
 from dashapp import create_dash_app
 
-urlPath_dash = '/dash'
+urlPath_dash = '/dash/'
 port_dash = 8050
 
 app_dash = create_dash_app(requests_pathname_prefix=urlPath_dash)

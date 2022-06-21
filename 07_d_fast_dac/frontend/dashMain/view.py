@@ -1,18 +1,24 @@
 import importlib
 from dash import html, dcc
 import dash_admin_components as dac
+
 from frontend.common.consts import MENU_ITEMS
 
 def load_module(module_nm):
-    rlt = importlib.import_module(f"frontend.dashPages.{module_nm}.view")
+    temp = f"frontend.dashPages.{module_nm}.view"
+    print(temp)
+    rlt = importlib.import_module(temp)
     return rlt
-# basic_cards = load_module('basic_cards')
-for m in MENU_ITEMS:
-    locals()[m] = load_module(m)
+# # basic_cards = load_module('basic_cards')
+
 
 # =============================================================================
 # Dash Admin Components
 # =============================================================================
+for m in MENU_ITEMS:
+    locals()[m] = load_module(m)
+    #tmp_menu_content =  [eval(f'{m}.content')]
+
 tmp_menu_content = [eval(f'{m}.content') for m in MENU_ITEMS]
 body = dac.Body(
     dac.TabItems(tmp_menu_content)
@@ -39,23 +45,10 @@ sidebar = dac.Sidebar(
                                 label='HOME', icon='box'),
             dac.SidebarHeader(
                 children="Cards"),  # ------------------------------
-            dac.SidebarMenuItem(id='sideMenu_basic_cards',
-                                label='Basic cards', icon='box'),
-            dac.SidebarMenuItem(id='sideMenu_social_cards',
-                                label='Social cards', icon='id-card'),
-            dac.SidebarMenuItem(id='sideMenu_tab_cards',
-                                label='Tab cards', icon='image'),
-            dac.SidebarHeader(
-                children="Boxes"),  # ------------------------------
-            dac.SidebarMenuItem(id='sideMenu_basic_boxes',
-                                label='Basic boxes', icon='desktop'),
-            dac.SidebarMenuItem(id='sideMenu_value_boxes',
-                                label='Value/Info boxes', icon='suitcase'),
-            dac.SidebarHeader(
-                children="Gallery"),  # ----------------------------
-            dac.SidebarMenuItem(
-                label='Galleries', icon='cubes',
-                children=subitems),
+            dac.SidebarMenuItem(id='sideMenu_stock',
+                                label='Stock', icon='box'),
+            dac.SidebarMenuItem(id='sideMenu_ivalidation',  
+                                label='Board', icon='box'),
         ]
     ),
     title='Dash Admin',

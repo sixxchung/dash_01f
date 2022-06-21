@@ -1,6 +1,7 @@
 import dash
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
+
 from frontend.common.consts import MENU_ITEMS
 
 def activate(input_id):

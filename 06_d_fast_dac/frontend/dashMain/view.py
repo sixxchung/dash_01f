@@ -1,13 +1,10 @@
 import importlib
 from dash import html, dcc
 import dash_admin_components as dac
-
 from frontend.common.consts import MENU_ITEMS
 
 def load_module(module_nm):
-    temp = f"frontend.dashPages.{module_nm}.view"
-    print(temp)
-    rlt = importlib.import_module(temp)
+    rlt = importlib.import_module(f"frontend.dashPages.{module_nm}.view")
     return rlt
 # basic_cards = load_module('basic_cards')
 for m in MENU_ITEMS:
@@ -38,7 +35,7 @@ subitems = [
 sidebar = dac.Sidebar(
     dac.SidebarMenu(
         children=[
-            dac.SidebarMenuItem(id='sideMenu_Default',
+            dac.SidebarMenuItem(id='sideMenu_home',
                                 label='HOME', icon='box'),
             dac.SidebarHeader(
                 children="Cards"),  # ------------------------------

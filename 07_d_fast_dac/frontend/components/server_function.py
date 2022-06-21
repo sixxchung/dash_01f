@@ -1,6 +1,5 @@
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
-from utils.constants import TIMEOUT
 
 import pandas as pd
 import plotly.graph_objs as go

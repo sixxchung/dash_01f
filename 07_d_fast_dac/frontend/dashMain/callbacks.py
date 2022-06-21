@@ -1,6 +1,7 @@
 import dash
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
+
 from frontend.common.consts import MENU_ITEMS
 
 def activate(input_id):
@@ -12,6 +13,13 @@ def activate(input_id):
     except:
         pass
     return menu_TF
+
+
+def load_module(module_nm):
+    temp = f"frontend.dashPages.{module_nm}.view"
+    print(temp)
+    rlt = importlib.import_module(temp)
+    return rlt
 # =============================================================================
 # Callbacks
 # =============================================================================

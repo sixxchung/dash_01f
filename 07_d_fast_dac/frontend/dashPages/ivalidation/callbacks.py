@@ -1,4 +1,4 @@
-from apps import app
+#from apps import app
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 from datetime import datetime
@@ -13,9 +13,9 @@ import dash as html
 import dash_table
 import time
 
-from utils.server_function import *
-from pages.dash_pages.model import *
-from utils.constants import RACK_COLOR
+from frontend.components.server_function import *
+from . import model
+from frontend.common.consts import RACK_COLOR
 
 
 def dash_summary_data(sDataType, sBankNo, sDate, eDate ):

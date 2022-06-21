@@ -4,6 +4,7 @@ from dash.exceptions import PreventUpdate
 
 from frontend.common.consts import MENU_ITEMS
 
+
 def activate(input_id):
     menu_n = len(MENU_ITEMS)
     menu_TF = [False for i in range(menu_n)]
@@ -15,11 +16,6 @@ def activate(input_id):
     return menu_TF
 
 
-def load_module(module_nm):
-    temp = f"frontend.dashPages.{module_nm}.view"
-    print(temp)
-    rlt = importlib.import_module(temp)
-    return rlt
 # =============================================================================
 # Callbacks
 # =============================================================================
@@ -27,10 +23,10 @@ def get_callbacks(app_dash):
     # -----------------------------------------------
     # -----------------------------------------------
     @app_dash.callback(
-        [Output(f'content_{menu}', 'active')    for menu in MENU_ITEMS],
-        [ Input(f'sideMenu_{menu}','n_clicks')  for menu in MENU_ITEMS] )       
+        [Output(f'content_{menu}', 'active') for menu in MENU_ITEMS],
+        [Input(f'sideMenu_{menu}', 'n_clicks') for menu in MENU_ITEMS])
     def display_tab(*args):
-        ctx = dash.callback_context  # 어떤 Input이 triggered 되었나. 
+        ctx = dash.callback_context  # 어떤 Input이 triggered 되었나.
         if not ctx.triggered:
             raise PreventUpdate
         else:
@@ -57,5 +53,6 @@ def get_callbacks(app_dash):
             raise PreventUpdate
         else:
             #input_id = ctx.triggered[0]['prop_id'].split('.')[0]
-            input_id = ctx.triggered[0]['prop_id'].split('.')[0].split('_', maxsplit=1)[1]
+            input_id = ctx.triggered[0]['prop_id'].split(
+                '.')[0].split('_', maxsplit=1)[1]
         return (input_id.replace('_', ' ')).upper()

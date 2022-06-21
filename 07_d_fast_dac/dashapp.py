@@ -8,24 +8,29 @@ from dash import dcc, html
 
 def create_dash_app(requests_pathname_prefix: str = None) -> Dash:
     import frontend.dashMain
-    from frontend.dashMain.view import navbar, sidebar, body, controlbar, footer 
+    from frontend.dashMain.view import navbar, sidebar, body, controlbar, footer
+
     # =============================================================================
     # Dash App and Flask Server
     # =============================================================================
+    # This stylesheet makes the buttons and table pretty.
+    external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
     app_dash = Dash(
-        name =__name__,
+        name=__name__,
         server=flask.Flask(__name__),
         prevent_initial_callbacks=True,
         requests_pathname_prefix=requests_pathname_prefix,
 
-        #routes_pathname_prefix='/dash/',
-        assets_folder= os.path.dirname(__file__)+ "/frontend"+"/assets"+"/",
+        # routes_pathname_prefix='/dash/',
+        assets_folder=os.path.dirname(__file__) + "/frontend"+"/assets"+"/",
         title="BECOM",
         suppress_callback_exceptions=True,
         external_stylesheets=[
+            external_stylesheets,
             dbc.themes.BOOTSTRAP,
-            #"./asset/css/all.css", #FONT_AWSOME
-            #"./asset/css/all.css", # EXTERNAL_STYLESHEETS,
+            # "./asset/css/all.css", #FONT_AWSOME
+            # "./asset/css/all.css", # EXTERNAL_STYLESHEETS,
         ],
         meta_tags=[
             {"name": "viewport", "content": "width=device-width, initial-scale=1"}

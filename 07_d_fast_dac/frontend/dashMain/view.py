@@ -48,7 +48,7 @@ sidebar = dac.Sidebar(
             dac.SidebarMenuItem(id='sideMenu_stock',
                                 label='Stock', icon='box'),
             dac.SidebarMenuItem(id='sideMenu_ivalidation',  
-                                label='Board', icon='box'),
+                                label='Initial Validation', icon='box'),
         ]
     ),
     title='Dash Admin',

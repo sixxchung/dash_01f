@@ -12,6 +12,8 @@ from datetime import date,timedelta, datetime
 from frontend.components.server_function import *
 from frontend.components.functions import formatter_2_decimals
 
+from . import model
+
 def make_dash_table(df):
     body = []
     header = []
@@ -46,33 +48,35 @@ dataTable_column = pd.DataFrame(columns = ['Date','Bank','WeekDay','Voltage','Cu
 # })
 
 condi_1 = dbc.Card(
-    [
+    body=True,
+    style={"height": "280px"},
+    children = [
         #dbc.FormGroup(
         dbc.Row(
-            # [
-            #     dbc.Col(children=[dbc.Label("Bank")], width={"size":5, "offset":0 }),
-            #     dbc.Col(children=[
-            #        dcc.Dropdown(id="cbo_dash_bank",
-            #             options=[
-            #                 {"label": col, "value": col} for col in df_bank().code
-            #             ],
-            #             value="1",
-            #         )
-            #     ], width={"size":7, "offset":0 }),
-            # ],style={'padding-top': '5px', 'padding-bottom': '5px'}
+            [
+                dbc.Col(children=[dbc.Label("Bank")], width={"size":5, "offset":0 }),
+                dbc.Col(children=[
+                   dcc.Dropdown(id="cbo_dash_bank",
+                        options=[
+                            {"label": col, "value": col} for col in df_bank().code
+                        ],
+                        value="1",
+                    )
+                ], width={"size":7, "offset":0 }),
+            ],style={'padding-top': '5px', 'padding-bottom': '5px'}
         ),
         dbc.Row(
-            # [
-            #     dbc.Col(children=[dbc.Label("Data Type")], width=5),
-            #     dbc.Col(children=[
-            #        dcc.Dropdown(id="cbo_dash_data_type",
-            #             options=[
-            #                 {"label": item, "value": item} for item in df_data_type().name
-            #             ],
-            #             value="Comparison",
-            #         )
-            #     ], width=7),
-            # ],style={'padding-top': '5px', 'padding-bottom': '5px'}
+            [
+                dbc.Col(children=[dbc.Label("Data Type")], width=5),
+                dbc.Col(children=[
+                   dcc.Dropdown(id="cbo_dash_data_type",
+                        options=[
+                            {"label": item, "value": item} for item in model.df_data_type().name
+                        ],
+                        value="Comparison",
+                    )
+                ], width=7),
+            ],style={'padding-top': '5px', 'padding-bottom': '5px'}
         ),
         dbc.Row(
             # [
@@ -117,10 +121,10 @@ condi_1 = dbc.Card(
             #     ],className="d-grid gap-2",) , width=12,),
             # ],style={'padding-top': '5px', 'padding-bottom': '5px'},
         )
-    ],
-    style={"height": "280px"},
-    body=True,
+    ]
 )
+
+
 
 condi_2 = dbc.Card(
     [
@@ -332,7 +336,6 @@ dash_DataTable_1_columns = [
     dict(id='UseDesc'  , name='Use Desc.' , type='text'), 
 ]
 
-
 dash_DataTable_1 = dash_table.DataTable(
                 id='dash_DT',
                 
@@ -395,9 +398,10 @@ content = dac.TabItem(
             tab_class_name="text-center",  # flex-grow-1
             children=html.Div(
                 children=[
-                    dcc.Store(id='ds_dash_df',storage_type='memory'),
+                    dcc.Store(id='ds_dash_df',        storage_type='memory'),
                     dcc.Store(id='ds_dash_compare_df',storage_type='memory'),
-                    dcc.Store(id='ds_dash_box_data',storage_type='memory'),
+                    dcc.Store(id='ds_dash_box_data',  storage_type='memory'),
+
                     dbc.Row([html.Br(),]),
                     dbc.Row(
                         children=[

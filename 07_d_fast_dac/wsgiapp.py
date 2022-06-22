@@ -4,7 +4,7 @@ from fastapi.middleware.wsgi import WSGIMiddleware
 from fastapi.responses import RedirectResponse
 
 from dashapp import create_dash_app
-from frontend.common.consts import Path_for_dash, Port_for_dash
+from frontend.common.dconsts import Path_for_dash, Port_for_dash
 
 app_fastapi = FastAPI()
 app_fastapi.router.redirect_slashes = False

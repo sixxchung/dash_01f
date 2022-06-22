@@ -27,8 +27,8 @@ def create_dash_app(requests_pathname_prefix: str = None) -> Dash:
         title="BECOM",
         suppress_callback_exceptions=True,
         external_stylesheets=[
-            external_stylesheets,
             dbc.themes.BOOTSTRAP,
+            external_stylesheets,
             # "./asset/css/all.css", #FONT_AWSOME
             # "./asset/css/all.css", # EXTERNAL_STYLESHEETS,
         ],

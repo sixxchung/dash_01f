@@ -3,12 +3,7 @@ from dash.exceptions import PreventUpdate
 import pandas as pd
 
     
-def df_data_type():   
-    # assign data of lists.  
-    data = {'name': ['Comparison', 'Period'], 'code': ['C','P']}  
-      # Create DataFrame  
-    df = pd.DataFrame(data)   
-    return df
+
 
 def df_dash_data():   
     data = pd.read_csv('./data/dash_summary_small_data.csv')

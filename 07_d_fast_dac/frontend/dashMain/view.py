@@ -2,7 +2,7 @@ import importlib
 from dash import html, dcc
 import dash_admin_components as dac
 
-from frontend.common.consts import MENU_ITEMS
+from frontend.common.dconsts import MENU_ITEMS
 
 
 def load_module(module_nm):

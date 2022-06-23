@@ -1,13 +1,30 @@
-from dataclasses import dataclass
-from datetime import date
+# -*- coding: utf-8 -*-
+import dash
+from dash import dcc, html
+from dash.dependencies import Input, Output
+
+app = dash.Dash(__name__)
+
+app.layout = html.Div([
+    dcc.Input(id="input-1",
+              type="text", value="Montréal"),
+    dcc.Input(id="input-2",
+              type="text", value="Canada"),
 
 
-@dataclass
-class User:
-    id: int
-    name: str
-    birthdate: date
-    admin: bool = False
+    html.Div(id="number-output"),
+])
 
 
-user1 = User(id=1, name="Steve Jobs", birthdate=date(1955, 2, 24))
+@app.callback(
+    Output("number-output", "children"),
+
+    Input("input-1", "value"),
+    Input("input-2", "value"),
+)
+def update_output(input1, input2):
+    return u'Input 1 is "{}" and Input 2 is "{}"'.format(input1, input2)
+
+
+if __name__ == "__main__":
+    app.run_server(debug=True)

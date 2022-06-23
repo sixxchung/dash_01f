@@ -2,8 +2,9 @@ from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 import pandas as pd
 
-    
 
+from frontend.common.dconfig import base_dir
+base_dir = '/Users/onesixx/my/git/dash_01f/07_d_fast_dac'
 
 def df_dash_data():   
     data = pd.read_csv('./data/dash_summary_small_data.csv')
@@ -18,7 +19,7 @@ def df_dash_raw_data():
     return data
 
 def df_dash_q_data():   
-    data = pd.read_csv('./data/q_data.csv')
+    data = pd.read_csv(base_dir+'/data/q_data.csv')
     # return data.to_json(date_format='iso' , orient='split')
     return data
 

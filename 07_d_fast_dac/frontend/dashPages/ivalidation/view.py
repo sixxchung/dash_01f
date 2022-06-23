@@ -62,7 +62,7 @@ dataTable_column = pd.DataFrame(
 #     df = pd.DataFrame(data)
 #     return df
 
-condi_1 = dbc.Card(
+r1_condi_1 = dbc.Card(
     body=True,
     #style={"height": "280px"},
     children=[
@@ -83,40 +83,44 @@ condi_1 = dbc.Card(
                 value="C",
             )
         ]), html.Br(),
-        dbc.Row(
-            # width=6, style={"padding-right": "5px"},
-            children=[
-                # dbc.Label("Stand Date"),
-                dbc.Label("From:"),  # id="lbl_date1"),
-                dcc.DatePickerSingle(
-                    id='dtp_dash_stand',
-                    min_date_allowed=date(2019, 12, 13),
-                    max_date_allowed=date.today(),
-                    initial_visible_month=date.today(),
-                    # date=date.today()-timedelta(days=1),
-                    date=datetime.strptime('2022-01-05', '%Y-%m-%d').date(),
-                    display_format='YYYY-MM-DD',
-                    style={"font-size": "1rem"}
-                )
-            ]
-        ),
+        dbc.Row([
+            dbc.Col(
+                width=6,  # style={"padding-right": "5px"},
+                children=[
+                    # dbc.Label("Stand Date"),
+                    dbc.Label("From:"),  # id="lbl_date1"),
+                    dcc.DatePickerSingle(
+                        id='dtp_dash_stand',
+                        min_date_allowed=date(2019, 12, 13),
+                        max_date_allowed=date.today(),
+                        initial_visible_month=date.today(),
+                        # date=date.today()-timedelta(days=1),
+                        date=datetime.strptime(
+                            '2022-01-05', '%Y-%m-%d').date(),
+                        display_format='YYYY-MM-DD',
+                        style={"font-size": "1rem"}
+                    )
+                ]
+            ),
 
-        dbc.Row(
-            # width=6, style={"align": "right", "padding-left": "5px"},
-            children=[
-                dbc.Label("to"),
-                dcc.DatePickerSingle(
-                    id='dtp_dash_compare',
-                    min_date_allowed=date(2019, 12, 13),
-                    max_date_allowed=date.today(),
-                    initial_visible_month=date.today(),
-                    # date.today()-timedelta(days=1),
-                    date=datetime.strptime('2022-01-06', '%Y-%m-%d').date(),
-                    display_format='YYYY-MM-DD',
-                    style={"font-size": 8}
-                )
-            ],
-        ),
+            dbc.Col(
+                width=6,  # style={"align": "right", "padding-left": "5px"},
+                children=[
+                    dbc.Label("to"),
+                    dcc.DatePickerSingle(
+                        id='dtp_dash_compare',
+                        min_date_allowed=date(2019, 12, 13),
+                        max_date_allowed=date.today(),
+                        initial_visible_month=date.today(),
+                        # date.today()-timedelta(days=1),
+                        date=datetime.strptime(
+                            '2022-01-06', '%Y-%m-%d').date(),
+                        display_format='YYYY-MM-DD',
+                        style={"font-size": 8}
+                    )
+                ],
+            )
+        ]),
         dbc.Row([
             # [
             # dbc.Col(children=html.Div([
@@ -134,7 +138,7 @@ condi_1 = dbc.Card(
     ]
 )
 
-condi_2 = dbc.Card(
+r1_condi_2 = dbc.Card(
     [
         dbc.Row([
             dcc.Loading(id="dash_plot_5_loading", type="default",
@@ -151,160 +155,124 @@ condi_2 = dbc.Card(
     body=True,
 )
 
-condi_3 = dbc.Card(
+r1_condi_3 = html.Div(
     [
-        # dbc.FormGroup(
-        dbc.Row(
-            [
-                #      dbc.Col(
-                #         html.H4(id='dash_box_voltage',
-                #             children=dac.ValueBox( value= "0 V",
-                #                                     subtitle="Voltage [0%]" ,
-                #                                     color = "primary",
-                #                                     icon = "chart-line",
-                #                                     width=12)
-                #         ),
-                #      md=4),
-                #      dbc.Col(
-                #         html.H4(id='dash_box_cq',
-                #             children=dac.ValueBox(  value = "0 Ah",
-                #                                     subtitle = "Charge Q [0%]" ,
-                #                                     color = "info",
-                #                                     icon = "charging-station",
-                #                                     width=12)
-                #         ),
-                #      md=4),
-                #      dbc.Col(
-                #         html.H4(id='dash_box_datacount',
-                #             children=dac.ValueBox(  value = "0",
-                #                                     subtitle = "Data Count [0%]" ,
-                #                                     color = "warning",
-                #                                     icon = "database",
-                #                                     width=12)
-                #         ),
-                #      md=4),
-            ]),
-        dbc.Row(
-            [
-
-                #      dbc.Col(
-                #         html.H4(id='dash_box_current_c',
-                #             children=dac.ValueBox(  value =  "0 A",
-                #                                     subtitle = "Current(C) [0%]" ,
-                #                                     color = "success",
-                #                                     icon = "wave-square",
-                #                                     width=12
-                #                                 )
-                #         ),
-                #      md=4),
-                #      dbc.Col(
-                #         html.H4(id='dash_box_current_d',
-                #             children=dac.ValueBox(  value =  "0 A",
-                #                                     subtitle = "Current(D) [0%]" ,
-                #                                     color = "secondary",
-                #                                     icon = "wave-square",
-                #                                     width=12
-                #                                 )
-                #         ),
-                #      md=4),
-                #      dbc.Col(
-                #         html.H4(id='dash_box_fail',
-                #             children=dac.ValueBox(  value= "0",
-                #                                     subtitle= "Data Fail [0%]" ,
-                #                                     color = "danger",
-                #                                     icon = "frown",
-                #                                     width=12
-                #                                 )
-                #         ),
-                #      md=4),
-
-            ]),
+        dbc.Row([
+            dac.ValueBox(
+                id='dash_box_voltage',
+                value="0 V",
+                subtitle="Voltage [0%]",
+                color="primary", icon="chart-line",
+                width=6
+            ),
+            dac.ValueBox(
+                id='dash_box_cq',
+                value="0 Ah",
+                subtitle="Charge Q [0%]",
+                color="info", icon="charging-station",
+                width=6
+            ),
+        ]),
+        dbc.Row([
+            dac.ValueBox(
+                id='dash_box_datacount',
+                value="0",
+                subtitle="Data Count [0%]",
+                color="warning", icon="database",
+                width=6
+            ),
+            dac.ValueBox(
+                id='dash_box_current_c',
+                value="0 A",
+                subtitle="Current(C) [0%]",
+                color="success", icon="wave-square",
+                width=6
+            ),
+        ]),
+        dbc.Row([
+            dac.ValueBox(
+                id='dash_box_current_d',
+                value="0 A",
+                subtitle="Current(D) [0%]",
+                color="secondary", icon="wave-square",
+                width=6
+            ),
+            dac.ValueBox(
+                id='dash_box_fail',
+                value="0",
+                subtitle="Data Fail [0%]",
+                color="danger", icon="frown",
+                width=6
+            )
+        ]),
     ],
-    #style={"height": "280px"},
-    body=True,
 )
 
-dash_control_1 = dbc.Card(
-    [
-        # dbc.FormGroup(
-        dbc.Row(
-            # [
-
-            #     dbc.Label("Voltage by Rack"),
-            #     dcc.Loading(id="dash_plot_1_loading", type="cube",
-            #         children=dcc.Graph(
-            #             id="dash_plot_1",
-            #             figure={'layout': {'height': 400}}
-            #         )
-            #     )
-            # ]
-        ),
+# r2_dash_control_1 = dbc.Card(
+r2_dash_control_1 = dac.SimpleBox(
+    title="Voltage by Rack",
+    children=[
+        dcc.Loading(
+            id="dash_plot_1_loading",
+            type="cube",
+            children=dcc.Graph(
+                id="dash_plot_1",
+                config=dict(displayModeBar=False),
+            )
+        )
     ],
-    style={"height": "460px"},
-    body=True,
+    width=12
+)
+r2_dash_control_2 = dac.SimpleBox(
+    title="Voltage by Rack",
+    children=[
+        dcc.Loading(
+            id="dash_plot_2_loading",
+            type="cube",
+            children=dcc.Graph(
+                id="dash_plot_2",
+                config=dict(displayModeBar=False),
+            )
+        )
+    ],
+    width=12
+)
+r3_dash_control_3 = dac.SimpleBox(
+    title="Temperature by Rack",
+    children=[
+        dcc.Loading(
+            id="dash_plot_3_loading",
+            type="dot",
+            children=dcc.Graph(
+                id="dash_plot_3",
+                config=dict(displayModeBar=False),
+                figure={
+                    'data': [{'y': [0, 0]}],
+                    # 'layout': {'height': 400}
+                }
+            )
+        )
+    ],
+    width=12
 )
 
-dash_control_2 = dbc.Card(
-    [
-        # dbc.FormGroup(
-        dbc.Row(
-            # [
-            #     dbc.Label("Current by Rack"),
-            #     dcc.Loading(id="dash_plot_2_loading", type="default",
-            #         children=dcc.Graph(
-            #             id="dash_plot_2",
-            #             figure={
-            #                 'data': [{'y': [0, 0] }],
-            #                 'layout': {'height': 400}
-            #             })
-            #     )
-            # ]
-        ),
+r3_dash_control_4 = dac.SimpleBox(
+    title="Charge/Discharge Q by Rack",
+    children=[
+        dcc.Loading(
+            id="dash_plot_4_loading",
+            type="circle",
+            children=dcc.Graph(
+                id="dash_plot_4",
+                config=dict(displayModeBar=False),
+                figure={
+                    'data': [{'y': [0, 0]}],
+                    # 'layout': {'height': 400}
+                }
+            )
+        )
     ],
-    style={"height": "460px"},
-    body=True,
-)
-
-dash_control_3 = dbc.Card(
-    [
-        # dbc.FormGroup(
-        dbc.Row(
-            [
-                # dbc.Label("Temperature by Rack"),
-                # dcc.Loading(id="dash_plot_3_loading", type="dot",
-                #     children=dcc.Graph(
-                #         id="dash_plot_3",
-                #         figure={
-                #             'data': [{'y': [0, 0] }],
-                #             'layout': {'height': 400}
-                #         })
-                # )
-            ]
-        ),
-    ],
-    style={"height": "460px"},
-    body=True,
-)
-
-dash_control_4 = dbc.Card(
-    [
-        # dbc.FormGroup(
-        dbc.Row(
-            [
-                # dbc.Label("Charge/Discharge Q by Rack"),
-                # dcc.Loading(id="dash_plot_4_loading", type="circle",
-                #     children=dcc.Graph(
-                #         id="dash_plot_4",
-                #         figure={
-                #             'data': [{'y': [0, 0] }],
-                #             'layout': {'height': 400}
-                #         })
-                # )
-            ]
-        ),
-    ],
-    style={"height": "460px"},
-    body=True,
+    width=12
 )
 
 dash_plot_selection_dataview = dbc.Modal(
@@ -415,31 +383,32 @@ content = dac.TabItem(
                     children=[
                         dbc.Row(html.Br()),
                         # style={"height": "100%"},),
-                        dbc.Col(condi_1, md=3, ),
+                        dbc.Col(r1_condi_1, md=3, ),
                         # style={"height": "100%"},),
-                        dbc.Col(condi_2, md=3, ),
+                        dbc.Col(r1_condi_2, md=5, ),
                         # style={"height": "100%"},),
-                        dbc.Col(condi_3, md=6, ),
+                        dbc.Col(r1_condi_3, md=4, ),
                     ],
                     align="center",
                     # style={"height":"290"},
                 ),
                 dbc.Row(  # 222
                     children=[
-                        dbc.Col(dash_control_1, md=6),
-                        dbc.Col(dash_control_2, md=6),
+                        dbc.Col(r2_dash_control_1, md=6),
+                        dbc.Col(r2_dash_control_2, md=6),
                     ],
                     align="center",
                 ),
                 dbc.Row(  # 333
                     children=[
-                        dbc.Col(dash_control_3, md=6),
-                        dbc.Col(dash_control_4, md=6),
+                        dbc.Col(r3_dash_control_3, md=6),
+                        dbc.Col(r3_dash_control_4, md=6),
                     ],
                     align="center",
                 ),
             ]
         ),
+        # TAB2 TAB2 TAB2 TAB2 TAB2 TAB2 TAB2 TAB2 TAB2 TAB2 TAB2 TAB2 TAB2 TAB2
         dbc.Tab(
             label='Calendar',
             id='tab2_ivalidation',
@@ -460,21 +429,25 @@ content = dac.TabItem(
                             display_format='YYYY-MM-DD'
                         ),
                         dbc.Button(
-                            html.Span(["Load Data", html.I(
-                                className="fas fa-arrow-alt-circle-right ml-2")]),
-                            id="dash_btn_load_check_data",
+                            "Load",
+                            id="dash_btn_load_check_data", className="me-2 fas fa-arrow-alt-circle-right",
                             color="dark",
-                            style={"margin-left": "15px"})
+                            style={"margin-left": "15px"}
+                        ),
                     ]
                 ),
                 html.Br(),
                 html.Div(
                     children=[
-                        dcc.Store(id='dash_store_data_table',
-                                  storage_type='memory'),
-                        dcc.Loading(id="dash_DT_1_loading", type="default",
-                                    children=[dash_DataTable_1],
-                                    )
+                        dcc.Store(
+                            id='dash_store_data_table',
+                            storage_type='memory'
+                        ),
+                        dcc.Loading(
+                            id="dash_DT_1_loading",
+                            type="default",
+                            children=[dash_DataTable_1],
+                        )
                     ]
                 )
             ]
